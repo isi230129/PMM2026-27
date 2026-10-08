@@ -72,7 +72,7 @@ Vorhersage: Fehlereldung-->weil R den Befehl nicht richtig verknüpfen kann
 Wähle zwei Zahlen-Spalten der Pinguine, die dich interessieren, und baue ein
 Streudiagramm mit sinnvollen `labs()`-Achsentiteln. Ergänze `geom_smooth()`.
 
-- Deine Frage (in einem Satz): Hängt die Schnabelhöhe von Pinguinen mit ihrer Schnabelhöhe zusammen und unterscheidet sich das nach Art?_________________________________________________
+- Deine Frage (in einem Satz): Hängt die Schnabellänge von Pinguinen mit ihrer Schnabelhöhe zusammen und unterscheidet sich das nach Art?_________________________________________________
 - Was zeigt der Plot? (2 Sätze): Der Plot zeigt, dass längere Schnäbel meist mit einer Größeren Schnabelhöhe einhergehen.
   Die Trendlinien machen diesen postiven Zusammenhang für jede Art sichtbar_________________________________________________
 
