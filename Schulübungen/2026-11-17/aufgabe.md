@@ -30,14 +30,15 @@ Vorhersage: M1:37,M2:39,M3:40
 **b)** Welche Maschine hat den größten Abstand zwischen Mittelwert und
 Sollmaß 10,00 mm? Um wie viele Hundertstel?
 
-Vorhersage: _M3,ca 5 Hndertsel___________________
+Vorhersage: _M3,ca 5 Hundertsel___________________
 
 **c)** M1 und M2 unterscheiden sich um 0,024 mm im Mittelwert, die
 Streuungen sind 0,032 mm und 0,040 mm. M1 und M3 unterscheiden sich um
 0,062 mm bei 0,032 mm und 0,070 mm Streuung. **Welcher Vergleich fällt
 statistisch leichter durch — und warum?** (2 Sätze, ohne Formel)
 
-_M1 vs. M3 fällt statistisch leichter durch. Der Mittelwertunterschied (0,062 mm) ist mehr als doppelt so groß wie bei M1 vs. M2 (0,024 mm), und die größere Streuung von M3 wiegt das nur teilweise auf.________________________________________________
+_M1 vs. M3 fällt statistisch leichter durch. Der Mittelwertunterschied (0,062 mm) ist mehr als doppelt so groß wie bei M1 vs. M2 (0,024 mm), und die größere Streuung von M3 wiegt das nur teilweise auf.
+__M1 vs. M3 fällt statistisch leichter durch. Der Mittelwertunterschied (0,062 mm) ist mehr als doppelt so groß wie bei M1 vs. M2 (0,024 mm), und die größere Streuung von M3 wiegt das nur teilweise auf.______________________________________________
 
 ---
 
@@ -55,15 +56,15 @@ t.test(masse_mm ~ maschine, data = vergleich)
 ```
 
 - t-Wert: __ca. −5,1__ &nbsp; Freiheitsgrade: _ca.55___________
-- p-Wert: ____<0,0001________
-- 95-%-Konfidenzintervall der Differenz: ____________________
+- p-Wert: 4.092e-06____<0,0001________
+- 95-%-Konfidenzintervall der Differenz: _-0.08658875 -0.03783017___________________
 
 **Lies das Intervall in ganzen Sätzen.** M3 liegt um wie viele mm
 *mindestens* über M1 — und um wie viele mm *höchstens*? Vergleiche mit der
 Toleranz von ± 0,15 mm: Passt der gesamte Intervall in die Toleranz, oder
 ragt er hinaus?
 
-_________________________________________________
+M3 liegt mindestens ca. 0,04 mm und höchstens ca. 0,09 mm über M1. Das ganze Intervall liegt innerhalb der Toleranz von ± 0,15 mm._________________________________________________
 
 ---
 
@@ -81,8 +82,8 @@ chargen <- daten |>
 chargen$M3 - chargen$M1
 ```
 
-**a)** Wie viele der 10 Differenzen sind positiv? ____________
-Wie viele sind negativ? ____________
+**a)** Wie viele der 10 Differenzen sind positiv? _alle positiv___________
+Wie viele sind negativ? _keines negativ___________
 
 **b)**
 
@@ -90,24 +91,24 @@ Wie viele sind negativ? ____________
 t.test(chargen$M3, chargen$M1, paired = TRUE)
 ```
 
-- t-Wert: ____________ &nbsp; Freiheitsgrade: ____________
-- p-Wert: ____________
+- t-Wert: __5.9822__________ &nbsp; Freiheitsgrade: __9__________
+- p-Wert: 0.000207____________
 
 **c)** Warum hat der gepaarte Test hier **9** Freiheitsgrade, obwohl
 er mit den Daten von 37 bzw. 40 Messungen arbeitet? (2 Sätze)
 
-_________________________________________________
+_Der gepaarte Test rechnet nur mit den 10 Chargen-Differenzen, nicht mit den einzelnen Messungen. Daher gilt df = n − 1 = 9.________________________________________________
 
 **d)** Rechne den t-Wert von Hand nach — einmal über die **Differenzen**,
 einmal über die **Messwerte** mit den Mittelwerten aus Aufgabe 1:
 
-- t über die Differenzen: ____________
-- t über die Messwerte (Mittelwert-Differenz / Streuung): ____________
+- t über die Differenzen: t = d̄ / (s_d / √10)
+- t über die Messwerte (Mittelwert-Differenz / Streuung): __ca.5,1__________
 
 Welcher Wert stimmt mit R überein, und was lernst du daraus über die
 gepaarte Formel?
 
-_________________________________________________
+Die gepaarte Formel nutzt nur die Streuung der Differenzen, nicht die der Rohwerte, und ist deshalb bei zusammengehörigen Werten empfindlicher._________________________________________________
 
 ---
 
@@ -117,21 +118,21 @@ _________________________________________________
 der Grundgesamtheit *nicht* bekannt ist. Was macht der t-Test mit dem
 geschätzten &sigma;, das der z-Test nicht macht?
 
-_________________________________________________
+Weil σ unbekannt ist, wird es durch die Stichproben-Streuung s geschätzt. Der t-Test berücksichtigt diese Unsicherheit durch die t-Verteilung mit breiteren Rändern, der z-Test tut so, als wäre σ exakt bekannt._________________________________________________
 
 **b)** Ein Kollege sagt nach einem Test mit `p = 0,42`: „Die beiden
 Maschinen sind also gleich gut." Hat er recht? Begründe mit dem Konzept
 der Fehler 1. und 2. Art.
 
-_________________________________________________
+Nein. p = 0,42 zeigt nur, dass kein Unterschied nachgewiesen wurde, nicht dass keiner existiert. Es kann ein Fehler 2. Art vorliegen, also ein übersehener echter Unterschied, etwa bei kleinem n oder großer Streuung._________________________________________________
 
 **c)** Nenne drei Situationen aus der Fertigung, in denen ein **gepaarter**
 t-Test der richtige ist, und jeweils einen Grund, warum die Werte
 paarweise zusammengehören.
 
-1. _________________________________________________
-2. _________________________________________________
-3. _________________________________________________
+1. Dasselbe Werkstück vor und nach der Wärmebehandlung messen_________________________________________________
+2. Dieselben Teile mit zwei Messgeräten messen._________________________________________________
+3. Dieselben Chargen auf zwei Maschinen fertigen._________________________________________________
 
 ---
 
@@ -143,7 +144,7 @@ ungepaarte Test liefert `p = 0,005456`, also „signifikant".
 **a)** Wäre das eine Basis für eine Prozessänderung? Begründe in 3 Sätzen,
 wobei du die Toleranz von ± 0,15 mm und den Sinn von `p` einbeziehst.
 
-_________________________________________________
+Nein, nicht automatisch. p = 0,005 sagt nur, dass der Unterschied wahrscheinlich nicht zufällig ist. Mit 0,024 mm entspricht er nur etwa 16 % der Toleranz von ± 0,15 mm, und ob sich eine Prozessänderung lohnt, sagt p nicht aus._________________________________________________
 
 **b)** Erkläre den Unterschied zwischen diesen zwei Sätzen:
 
@@ -153,7 +154,7 @@ _________________________________________________
 Warum sind das zwei verschiedene Aussagen? Welche ist die Stärke des
 Tests, welche seine Grenze?
 
-_________________________________________________
+„Signifikant" heißt, dass der Unterschied statistisch kaum Zufall ist. „Wirtschaftlich nicht relevant" heißt, dass er zu klein ist, um etwas zu bewirken. Die Stärke des Tests ist, echte Effekte von Rauschen zu trennen, seine Grenze ist, dass er nichts über die Größe oder Bedeutung des Effekts sagt._________________________________________________
 
 **c)** Wenn du der 0,024-mm-Unterschied *doch* statistisch belegen
 musst: Welche Stichprobengröße bräuchtest du ungefähr, statt der 40 pro
@@ -161,4 +162,4 @@ Maschine? Du musst nicht selbst rechnen — begründe die Richtung:
 mehrt man die Zahl der Teile oder die Zahl der Chargen, und warum ist
 eine davon wirksamer?
 
-_________________________________________________
+Man braucht deutlich mehr Messungen, weil ein kleiner Unterschied bei gleicher Streuung nur mit größerem n sichtbar wird. Mehr Chargen sind wirksamer als mehr Teile, weil Teile innerhalb einer Charge einander ähnlich sind und wenig neue Information liefern._________________________________________________
